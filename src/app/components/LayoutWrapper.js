@@ -8,16 +8,22 @@ import { useDisclosure } from '@mantine/hooks';
 import { useMantineColorScheme, useComputedColorScheme } from '@mantine/core';
 import { IoSunnyOutline, IoMoonOutline } from "react-icons/io5";
 
+import NextTopLoader from 'nextjs-toploader'
+
 const LayoutWrapper = ({ children }) => {
 
   const [opened, { toggle, close }] = useDisclosure(false);
 
-    const { toggleColorScheme } = useMantineColorScheme();
-    const computedColorScheme = useComputedColorScheme('light');
-    const isDark = computedColorScheme === 'dark';
+  const { toggleColorScheme } = useMantineColorScheme();
+  const computedColorScheme = useComputedColorScheme('light');
+  const isDark = computedColorScheme === 'dark';
 
   return (<>
+    <NextTopLoader color="#4f46e5" height={4} showSpinner={false} />
+
+
     <AppShell header={{ height: 60 }} style={{ overflow: 'hidden' }}>
+
       <AppShell.Header>
         <Group justify="space-between" align="center" h="100%" px="md">
           <Group position="center" gap='6'>
@@ -29,7 +35,7 @@ const LayoutWrapper = ({ children }) => {
           {/* hide these two button */}
           <Group gap='sm' hiddenFrom='sm'>
             <Link href={'/shorten'}><Button variant="filled" >Try Now</Button></Link>
-            <Button variant="filled">Github</Button>
+            <Link target='_blank' href={'https://github.com/tafseerali'}><Button variant="filled">Github</Button></Link>
           </Group>
 
           {/* desktop links */}
@@ -39,7 +45,7 @@ const LayoutWrapper = ({ children }) => {
             <Link href={'/shorten'}><Button variant="transparent" color='blueCustom.9'>Shorten</Button></Link>
             <Link href={'/contact'}><Button variant="transparent" color='blueCustom.9'>Contact</Button></Link>
             <Link href={'/shorten'}><Button variant="filled" >Try Now</Button></Link>
-            <Button variant="filled">Github</Button>
+            <Link target='_blank' href={'https://github.com/tafseerali'}><Button variant="filled">Github</Button></Link>
           </Group>
           {/* Burger */}
           <Burger
@@ -61,10 +67,10 @@ const LayoutWrapper = ({ children }) => {
         position="right"
         title="Menu"
       >
-        <Link style={{textDecoration: 'none'}} href={'/'}><Button variant="filled" color='blueCustom.9' fullWidth mb="sm" onClick={close}>Home</Button></Link>
-        <Link style={{textDecoration: 'none'}} href={'/about'}><Button variant="filled" color='blueCustom.9' fullWidth mb="sm" onClick={close}>About</Button></Link>
-        <Link style={{textDecoration: 'none'}} href={'/shorten'}><Button variant="filled" color='blueCustom.9' fullWidth mb="sm" onClick={close}>Shorten</Button></Link>
-        <Link style={{textDecoration: 'none'}} href={'/contact'}><Button variant="filled" color='blueCustom.9' fullWidth mb="sm" onClick={close}>Contact</Button></Link>
+        <Link style={{ textDecoration: 'none' }} href={'/'}><Button variant="filled" color='blueCustom.9' fullWidth mb="sm" onClick={close}>Home</Button></Link>
+        <Link style={{ textDecoration: 'none' }} href={'/about'}><Button variant="filled" color='blueCustom.9' fullWidth mb="sm" onClick={close}>About</Button></Link>
+        <Link style={{ textDecoration: 'none' }} href={'/shorten'}><Button variant="filled" color='blueCustom.9' fullWidth mb="sm" onClick={close}>Shorten</Button></Link>
+        <Link style={{ textDecoration: 'none' }} href={'/contact'}><Button variant="filled" color='blueCustom.9' fullWidth mb="sm" onClick={close}>Contact</Button></Link>
       </Drawer>
 
       {/* Main content */}
@@ -79,6 +85,7 @@ const LayoutWrapper = ({ children }) => {
           pos={'absolute'}
           bottom={20}
           right={20}
+          style={{zIndex: '999'}}
         >
           <ActionIcon
             pos={'fixed'}

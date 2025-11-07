@@ -2,8 +2,34 @@
 import { Container, Title, Text, Card, Stack, Group, Button, Anchor, Image } from "@mantine/core";
 import Link from "next/link";
 import { IconMail, IconWorld, IconBrandGithub } from "@tabler/icons-react";
+import { useEffect } from "react";
+
+
 
 export default function Contact() {
+
+    useEffect(() => {
+    // 🧠 Set dynamic page title
+    document.title = "Contact | BitLink";
+
+    // 🧠 Set meta description
+    document
+      .querySelector('meta[name="description"]')
+      ?.setAttribute(
+        "content",
+        "Get in touch with BitLink for support, feedback, or collaboration. We're here to help you with all your URL shortening needs."
+      );
+
+    // 🧠 Set favicon dynamically
+    const link =
+      document.querySelector("link[rel~='icon']") ||
+      document.createElement("link");
+    link.rel = "icon";
+    link.href = "/logo.ico";
+    document.head.appendChild(link);
+  }, []);
+
+
   return (
     <Container size="sm" py="xl">
       <Stack align="center" gap="lg" ta="center">

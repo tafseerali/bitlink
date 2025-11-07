@@ -6,9 +6,33 @@ import { useForm } from '@mantine/form';
 import { TextInput } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
 import Link from 'next/link';
+import { useEffect } from 'react';
 
 
 const Shorten = () => {
+
+  useEffect(() => {
+    // 🧠 Set dynamic page title
+    document.title = "Shorten URL | BitLink";
+
+    // 🧠 Set meta description
+    document
+      .querySelector('meta[name="description"]')
+      ?.setAttribute(
+        "content",
+        "Easily shorten long URLs with BitLink. Create custom short links, manage them efficiently, and share effortlessly."
+      );
+
+    // 🧠 Set favicon dynamically
+    const link =
+      document.querySelector("link[rel~='icon']") ||
+      document.createElement("link");
+    link.rel = "icon";
+    link.href = "/logo.ico";
+    document.head.appendChild(link);
+  }, []);
+
+
   const [Generated, setGenerated] = useState(false)
 
   const form = useForm({
@@ -66,11 +90,11 @@ const Shorten = () => {
     <>
       <Group w={'100vw'} visibleFrom='sm' >
         <Center h={'100vh'} w={'50%'} style={{ borderRight: '1px solid #636363' }}>
-          
+
           <Stack h={'fit-content'} w={'90%'} p={40} bdrs={20} style={{ boxShadow: '0px 1px 10px #141414' }} >
-            <TextInput {...form.getInputProps('url')} label="URL" placeholder="Enter your URL" mb="sm" size='17' styles={{ input: { height: 55 } }}/>
+            <TextInput {...form.getInputProps('url')} label="URL" placeholder="Enter your URL" mb="sm" size='17' styles={{ input: { height: 55 } }} />
             <TextInput {...form.getInputProps('alias')} label="ALIAS" placeholder="Enter Alias" mb="sm" size='17' styles={{ input: { height: 55 } }} />
-            <Button onClick={generate} style={{height: '50px', fontSize: '17px'}}>Generate Short Link</Button>
+            <Button onClick={generate} style={{ height: '50px', fontSize: '17px' }}>Generate Short Link</Button>
             {Generated && <Group><Text>Your URL is:</Text><Link target='_blank' href={`${Generated}`}>{Generated}</Link></Group>
             }
           </Stack>
@@ -107,52 +131,49 @@ const Shorten = () => {
         </Stack>
       </Group>
 
-
-
-
       {/* For mobile */}
-<Center h={'fit-content'} mb={50}>
-      <Stack w={'fit-content'} hiddenFrom='sm'>
-        <Center w={'100%'} my={50}>
-          <Stack h={'fit-content'} w={'90%'} p={20} bdrs={20} style={{ boxShadow: '0px 1px 10px #141414' }} >
-            <TextInput {...form.getInputProps('url')} label="URL" placeholder="Enter your URL" mb="sm" size='17' styles={{ input: { height: 55 } }} />
-            <TextInput {...form.getInputProps('alias')} label="ALIAS" placeholder="Enter Alias" mb="sm" size='17' styles={{ input: { height: 55 } }} />
-            <Button onClick={generate} style={{height: '50px', fontSize: '17px'}}>Generate Short Link</Button>
-            {Generated && <Group><Text>Your URL is:</Text><Link target='_blank' href={`${Generated}`}>{Generated}</Link></Group>
-            }
-          </Stack>
-        </Center>
-        <Stack w={'100%'}>
-          <Stack px={20}>
-            <Title c={'blueCustom.9'} order={2}>Make your URL short</Title>
-            <List>
-              <List.Item>Tired of long, messy links?</List.Item>
-              <List.Item>Paste your long URL and get a clean, shareable link instantly.</List.Item>
-              <List.Item>Perfect for sharing on social media, emails, or anywhere space matters.</List.Item>
-            </List>
+      <Center h={'fit-content'} mb={50}>
+        <Stack w={'fit-content'} hiddenFrom='sm'>
+          <Center w={'100%'} my={50}>
+            <Stack h={'fit-content'} w={'90%'} p={20} bdrs={20} style={{ boxShadow: '0px 1px 10px #141414' }} >
+              <TextInput {...form.getInputProps('url')} label="URL" placeholder="Enter your URL" mb="sm" size='17' styles={{ input: { height: 55 } }} />
+              <TextInput {...form.getInputProps('alias')} label="ALIAS" placeholder="Enter Alias" mb="sm" size='17' styles={{ input: { height: 55 } }} />
+              <Button onClick={generate} style={{ height: '50px', fontSize: '17px' }}>Generate Short Link</Button>
+              {Generated && <Group><Text>Your URL is:</Text><Link target='_blank' href={`${Generated}`}>{Generated}</Link></Group>
+              }
+            </Stack>
+          </Center>
+          <Stack w={'100%'}>
+            <Stack px={20}>
+              <Title c={'blueCustom.9'} order={2}>Make your URL short</Title>
+              <List>
+                <List.Item>Tired of long, messy links?</List.Item>
+                <List.Item>Paste your long URL and get a clean, shareable link instantly.</List.Item>
+                <List.Item>Perfect for sharing on social media, emails, or anywhere space matters.</List.Item>
+              </List>
 
-            <Title c={'blueCustom.9'} order={2}>How it works</Title>
-            <List>
-              <List.Item>Enter your long URL and custom alias</List.Item>
-              <List.Item>Click Generate Short Link.</List.Item>
-              <List.Item>Get your unique short URL ready to share immediately.</List.Item>
-            </List>
-            <Text>Your links stay safe, private, and easily manageable.</Text>
+              <Title c={'blueCustom.9'} order={2}>How it works</Title>
+              <List>
+                <List.Item>Enter your long URL and custom alias</List.Item>
+                <List.Item>Click Generate Short Link.</List.Item>
+                <List.Item>Get your unique short URL ready to share immediately.</List.Item>
+              </List>
+              <Text>Your links stay safe, private, and easily manageable.</Text>
 
 
-            <Title c={'blueCustom.9'} order={2}>Why use BitLinks</Title>
-            <List>
-              <List.Item>Fast and reliable link shortening</List.Item>
-              <List.Item>Custom aliases for branded links</List.Item>
-              <List.Item>Easy to use, no signup required</List.Item>
-              <List.Item>Works seamlessly on any device</List.Item>
-            </List>
+              <Title c={'blueCustom.9'} order={2}>Why use BitLinks</Title>
+              <List>
+                <List.Item>Fast and reliable link shortening</List.Item>
+                <List.Item>Custom aliases for branded links</List.Item>
+                <List.Item>Easy to use, no signup required</List.Item>
+                <List.Item>Works seamlessly on any device</List.Item>
+              </List>
 
-            <Title c={'blueCustom.9'} order={2}>Share smarter</Title>
-            <Text>Turn long, confusing URLs into simple links that look great and build trust.</Text>
+              <Title c={'blueCustom.9'} order={2}>Share smarter</Title>
+              <Text>Turn long, confusing URLs into simple links that look great and build trust.</Text>
+            </Stack>
           </Stack>
         </Stack>
-      </Stack>
       </Center>
 
     </>

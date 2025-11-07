@@ -104,18 +104,19 @@ export default function Home() {
                 cursor={true}
                 repeat={Infinity}
                 speed={1}
-                style={{ fontSize: '1.5em', display: 'inline-block', color: '#595959' }}
+                style={{ fontSize: '1.5em', display: 'inline-block', color: '#595959', padding: '20px 0px' }}
               />
 
-              <Group pt={20}>
-                <Button variant="filled" size='md'>Try Now</Button>
-                <Button
+              <Group py={20}>
+                <Link href={'/shorten'}><Button variant="filled" size='md'>Try Now</Button></Link>
+                <Link target='_blank' href={'https://github.com/tafseerali'}><Button
                   size='md'
                   variant="outline"
                   color="blueCustom.5"
                 >
                   Github
                 </Button>
+                </Link>
               </Group>
             </MotionBox>
           </Center>

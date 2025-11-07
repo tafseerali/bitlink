@@ -1,8 +1,29 @@
 "use client";
 import { Container, Title, Text, Card, Stack, Group, Button, Image } from "@mantine/core";
 import Link from "next/link";
+import { useEffect } from "react";
 
 export default function About() {
+
+    useEffect(() => {
+    // 🧠 Set dynamic metadata for the About page
+    document.title = "About | BitLink";
+    document
+      .querySelector('meta[name="description"]')
+      ?.setAttribute(
+        "content",
+        "Learn more about BitLink — a fast, reliable, and simple URL shortener designed to make your links cleaner and smarter."
+      );
+
+    // 🧠 Set favicon dynamically
+    const link =
+      document.querySelector("link[rel~='icon']") ||
+      document.createElement("link");
+    link.rel = "icon";
+    link.href = "/logo.ico";
+    document.head.appendChild(link);
+  }, []);
+
   return (
     <Container size="md" py="xl">
       <Stack gap="lg" align="center" ta="center">
