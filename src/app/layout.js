@@ -47,6 +47,7 @@ export default function RootLayout({ children }) {
       <head>
         <ColorSchemeScript />
         <link rel="icon" href="/logo.ico" />
+        <meta name="google-site-verification" content="oZonLHfhtwnr0rlgbcG4GUbPyHNFcKF0g_4bmHX6vrk" />
       </head>
       <body>
         {/* Ensure Providers is a client component */}
